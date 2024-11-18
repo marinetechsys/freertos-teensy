@@ -178,6 +178,7 @@ FLASHMEM void init_newlib_locks() {
 }
 
 FLASHMEM void __retarget_lock_init(_LOCK_T* p_lock_ptr) {
+    *p_lock_ptr = static_cast<_LOCK_T>(pvPortMalloc(sizeof(struct __lock)));
     (*p_lock_ptr)->handle_ = xSemaphoreCreateMutex();
 
     configASSERT((*p_lock_ptr)->handle_);
@@ -206,9 +207,11 @@ FLASHMEM void __retarget_lock_close(_LOCK_T p_lock) {
     if (p_lock->handle_) {
         vSemaphoreDelete(p_lock->handle_);
     }
+    vPortFree(p_lock);
 }
 
 FLASHMEM void __retarget_lock_init_recursive(_LOCK_T* p_lock_ptr) {
+    *p_lock_ptr = static_cast<_LOCK_T>(pvPortMalloc(sizeof(struct __lock)));
     (*p_lock_ptr)->handle_ = xSemaphoreCreateRecursiveMutex();
 
     configASSERT((*p_lock_ptr)->handle_);

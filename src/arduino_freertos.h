@@ -102,6 +102,9 @@
 #undef RISING
 #undef digitalPinHasPWM
 #undef LED_BUILTIN
+#else // USE_ARDUINO_DEFINES
+#undef B1
+#undef B2
 #endif // USE_ARDUINO_DEFINES
 
 namespace arduino {
