@@ -94,8 +94,6 @@
 #undef INPUT_PULLDOWN
 #undef OUTPUT_OPENDRAIN
 #undef INPUT_DISABLE
-#undef LSBFIRST
-#undef MSBFIRST
 #undef _BV
 #undef CHANGE
 #undef FALLING
@@ -186,29 +184,65 @@ T map(const T x, const T in_min, const T in_max, const T out_min, const T out_ma
 }
 
 #ifndef USE_ARDUINO_DEFINES
+#ifndef INPUT
 static constexpr uint8_t INPUT { 0 };
+#endif
+#ifndef OUTPUT  
 static constexpr uint8_t OUTPUT { 1 };
+#endif
+#ifndef INPUT_PULLUP
 static constexpr uint8_t INPUT_PULLUP { 2 };
+#endif
+#ifndef INPUT_PULLDOWN
 static constexpr uint8_t INPUT_PULLDOWN { 3 };
+#endif
+#ifndef OUTPUT_OPENDRAIN
 static constexpr uint8_t OUTPUT_OPENDRAIN { 4 };
+#endif
+#ifndef INPUT_DISABLE
 static constexpr uint8_t INPUT_DISABLE { 5 };
+#endif
 
+#ifndef LSBFIRST
 static constexpr uint8_t LSBFIRST { 0 };
+#endif
+#ifndef MSBFIRST
 static constexpr uint8_t MSBFIRST { 1 };
+#endif
 
+#ifndef LED_BUILTIN
 static constexpr uint8_t LED_BUILTIN { 13 };
+#endif
 
+#ifndef LOW
 static constexpr uint8_t LOW { 0 };
+#endif
+#ifndef HIGH
 static constexpr uint8_t HIGH { 1 };
+#endif
 
+#ifndef FALLING
 static constexpr uint8_t FALLING { 2 };
+#endif
+#ifndef RISING
 static constexpr uint8_t RISING { 3 };
+#endif
+#ifndef CHANGE
 static constexpr uint8_t CHANGE { 4 };
+#endif
 
+#ifndef DEC
 static constexpr uint8_t DEC { 10 };
+#endif
+#ifndef HEX
 static constexpr uint8_t HEX { 16 };
+#endif
+#ifndef OCT
 static constexpr uint8_t OCT { 8 };
+#endif
+#ifndef BIN
 static constexpr uint8_t BIN { 2 };
+#endif
 
 #if defined __IMXRT1062__ && defined ARDUINO_TEENSY40
 static constexpr bool digitalPinHasPWM(uint8_t p) {
