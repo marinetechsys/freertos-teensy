@@ -35,8 +35,13 @@
 
 #pragma once
 
-#include "arduino_freertos.h"
+#include "FreeRTOS.h"
+#include "task.h"
 #include "semphr.h"
+
+#ifndef _GCC_VERSION
+#define _GCC_VERSION (__GNUC__ * 10000 + __GNUC_MINOR__ * 100 + __GNUC_PATCHLEVEL__)
+#endif
 
 #if _GCC_VERSION >= 60100 && defined PLATFORMIO
 #include "thread_gthread.h"
